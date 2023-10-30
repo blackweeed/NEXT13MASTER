@@ -15,10 +15,14 @@ export const getProductsList = async () => {
 
 	return graphqlResponse.products?.data;
 };
-export const getProductsListWithPagination = async (page: number, pageSize: number) => {
+export const getProductsListWithPagination = async (
+	page: number,
+	pageSize: number,
+	sortBy: string,
+) => {
 	const graphqlResponse = await executeGraphql({
 		query: ProductsGetListWithPaginationDocument,
-		variables: { pagination: { page: page, pageSize: pageSize } },
+		variables: { pagination: { page: page, pageSize: pageSize }, sort: sortBy },
 	});
 
 	return graphqlResponse.products?.data;

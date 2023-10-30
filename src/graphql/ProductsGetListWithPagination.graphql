@@ -1,5 +1,5 @@
-query ProductsGetListWithPagination($pagination: PaginationArg) {
-	products(pagination: $pagination) {
+query ProductsGetListWithPagination($pagination: PaginationArg, $sort: [String]) {
+	products(sort: $sort, pagination: $pagination) {
 		data {
 			...ProductsListItem
 		}

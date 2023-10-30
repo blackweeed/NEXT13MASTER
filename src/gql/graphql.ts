@@ -1492,6 +1492,7 @@ export type ProductsGetListFilteredQuery = { products?: { data: Array<{ id?: str
 
 export type ProductsGetListWithPaginationQueryVariables = Exact<{
   pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>> | InputMaybe<Scalars['String']['input']>>;
 }>;
 
 
@@ -2058,8 +2059,8 @@ export const ProductsGetListFilteredDocument = new TypedDocumentString(`
   }
 }`) as unknown as TypedDocumentString<ProductsGetListFilteredQuery, ProductsGetListFilteredQueryVariables>;
 export const ProductsGetListWithPaginationDocument = new TypedDocumentString(`
-    query ProductsGetListWithPagination($pagination: PaginationArg) {
-  products(pagination: $pagination) {
+    query ProductsGetListWithPagination($pagination: PaginationArg, $sort: [String]) {
+  products(sort: $sort, pagination: $pagination) {
     data {
       ...ProductsListItem
     }

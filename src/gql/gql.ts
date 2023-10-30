@@ -31,7 +31,7 @@ const documents = {
     "query ProductGetListById($productId: ID) {\n  product(id: $productId) {\n    data {\n      attributes {\n        usuallyBuyWith {\n          data {\n            ...ProductsListItem\n          }\n        }\n      }\n      ...ProductsListItem\n    }\n  }\n}": types.ProductGetListByIdDocument,
     "query ProductsGetList {\n  products {\n    data {\n      ...ProductsListItem\n    }\n  }\n}": types.ProductsGetListDocument,
     "query ProductsGetListFiltered($filters: ProductFiltersInput) {\n  products(filters: $filters) {\n    data {\n      ...ProductsListItem\n    }\n  }\n}": types.ProductsGetListFilteredDocument,
-    "query ProductsGetListWithPagination($pagination: PaginationArg) {\n  products(pagination: $pagination) {\n    data {\n      ...ProductsListItem\n    }\n  }\n}": types.ProductsGetListWithPaginationDocument,
+    "query ProductsGetListWithPagination($pagination: PaginationArg, $sort: [String]) {\n  products(sort: $sort, pagination: $pagination) {\n    data {\n      ...ProductsListItem\n    }\n  }\n}": types.ProductsGetListWithPaginationDocument,
     "fragment ProductsListItem on ProductEntity {\n  id\n  attributes {\n    usuallyBuyWith {\n      data {\n        id\n        attributes {\n          slug\n          price\n          descriptionShort\n          images {\n            data {\n              attributes {\n                url\n              }\n            }\n          }\n        }\n      }\n    }\n    name\n    price\n    slug\n    isBestseller\n    isNew\n    discount\n    description\n    descriptionShort\n    images {\n      data {\n        attributes {\n          url\n        }\n      }\n    }\n  }\n}": types.ProductsListItemFragmentDoc,
 };
 
@@ -106,7 +106,7 @@ export function graphql(source: "query ProductsGetListFiltered($filters: Product
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query ProductsGetListWithPagination($pagination: PaginationArg) {\n  products(pagination: $pagination) {\n    data {\n      ...ProductsListItem\n    }\n  }\n}"): typeof import('./graphql').ProductsGetListWithPaginationDocument;
+export function graphql(source: "query ProductsGetListWithPagination($pagination: PaginationArg, $sort: [String]) {\n  products(sort: $sort, pagination: $pagination) {\n    data {\n      ...ProductsListItem\n    }\n  }\n}"): typeof import('./graphql').ProductsGetListWithPaginationDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
